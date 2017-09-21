@@ -179,10 +179,3 @@ $("#add-targetLocation").on("click", function(event) {
 	});
 
 });
-
-
-
-
-
-
-
