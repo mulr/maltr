@@ -32,3 +32,11 @@ body {
   margin-left: 3%;
   font-size: 20px;
 }
+
+#active {
+  color: orangered;
+}
+
+#beer-buttons {
+  text-align: center;
+}
