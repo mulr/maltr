@@ -1,7 +1,9 @@
-a,
-h1 {
-	font-family: 'Acme', sans-serif;
+a {
+  font-family: 'Acme', sans-serif;
+}
 
+h1 {
+	font-family: 'Wendy One', sans-serif;
 }
 
 body {
@@ -39,4 +41,24 @@ body {
 
 #beer-buttons {
   text-align: center;
+}
+
+#brewery-submit {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  opacity: .9;
+}
+
+#brewer-button {
+  width: 100%;
+  background-color: #1F9968;
+  color: black;
+  background-image: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.5) 51%);
+}
+
+input:focus {
+  box-shadow: 0 0 5px rgb(51, 195, 67);
+  
+  border: 1px solid rgb(20, 159, 104);
 }
