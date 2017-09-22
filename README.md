@@ -1,6 +1,6 @@
 # maltr
 
-Our app will complement micro breweries' marketing strategy by giving their clients
+Our app will complement micro breweries's marketing strategy by giving their clients
 a tool to search for additional local sellers of their favorite brews.
 
 Once subscribed, sellers' locations will populate on a map, along
