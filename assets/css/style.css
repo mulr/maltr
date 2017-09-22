@@ -17,7 +17,7 @@ body {
    color: orangered;
    text-shadow:
        3px 3px 0 #000,
-     -1px -1px 0 #000,  
+     -1px -1px 0 #000,
       1px -1px 0 #000,
       -1px 1px 0 #000,
        1px 1px 0 #000;
@@ -59,7 +59,7 @@ body {
 
 input:focus {
   box-shadow: 0 0 5px rgb(51, 195, 67);
-  
+
   border: 1px solid rgb(20, 159, 104);
 }
 
@@ -76,6 +76,18 @@ input:focus {
 
 .dropdown-item:hover {
   background-color: 	rgba(255, 69, 0, .7);
-  
+
   color: black;
+}
+
+
+
+    /*MAP CSS*/
+
+
+#map_canvas {
+height: 500px;
+width: 500px;
+margin: 0px;
+padding: 0px
 }
