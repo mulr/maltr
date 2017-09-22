@@ -1,177 +1,97 @@
-/* Pull local Farers market data from the USDA API and display on
-** Google Maps using GeoLocation or user input zip code. By Paul Dessert
-** www.pauldessert.com | www.seedtip.com
-*/
-
-$(function() {
-
-		var marketId = []; //returned from the API
-		var allLatlng = []; //returned from the API
-		var allMarkers = []; //returned from the API
-		var marketName = []; //returned from the API
-		var infowindow = null;
-		var pos;
-		var userCords;
-		var tempMarkerHolder = [];
-
-		//Start geolocation
-		if (navigator.geolocation) {
-			function error(err) {
-				    console.warn('ERROR(' + err.code + '): ' + err.message);
-			}
-			function success(pos){
-				    userCords = pos.coords;
-				        //return userCords;
-			}
-			// Get the user's current position
-			navigator.geolocation.getCurrentPosition(success, error);
-			//console.log(pos.latitude + " " + pos.longitude);
-			} else {
-				    alert('Geolocation is not supported in your browser');
-		}
-		//End Geo location
 
 
 
-		//map options
-		var mapOptions = {
-  			zoom: 5,
-  			center: new google.maps.LatLng(37.09024, -100.712891),
-  			panControl: false,
-  			panControlOptions: {
-  				position: google.maps.ControlPosition.BOTTOM_LEFT
-  			},
-  			zoomControl: true,
-  			zoomControlOptions: {
-  				style: google.maps.ZoomControlStyle.LARGE,
-  				position: google.maps.ControlPosition.RIGHT_CENTER
-  			},
-  			scaleControl: false
-
-		};
-
-  	//Adding infowindow option
-  	infowindow = new google.maps.InfoWindow({
-  		  content: "holding..." //this is the square box that will likely hold reviews etc...
-  	});
-
-  	//Fire up Google maps and place inside the map-canvas div
-  	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
 
 
 
 
 
 
-	//grab form data
-    $('#chooseZip').submit(function() { // bind function to submit event of form
-
-		//define and set variables
-		var userZip = $("#textZip").val();
-		//console.log("This-> " + userCords.latitude);
-
-		var accessURL;
-
-		if(userZip){
-			accessURL = "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=" + userZip;
-		} else {
-			accessURL = "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/locSearch?lat=" + userCords.latitude + "&lng=" + userCords.longitude;
-		}
-
-
-			//Use the zip code and return all market ids in area.
-			$.ajax({
-				type: "GET",
-				contentType: "application/json; charset=utf-8",
-				url: accessURL,
-				dataType: 'jsonp',
-				success: function (data) {
-
-					 $.each(data.results, function (i, val) {
-						marketId.push(val.id);
-						marketName.push(val.marketname);
-					 });
-
-					//console.log(marketName);
-
-					var counter = 0;
-					//Now, use the id to get detailed info
-					$.each(marketId, function (k, v){
-						$.ajax({
-							type: "GET",
-							contentType: "application/json; charset=utf-8",
-							// submit a get request to the restful service mktDetail.
-							url: "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id=" + v,
-							dataType: 'jsonp',
-							success: function (data) {
-
-							for (var key in data) {
-
-								var results = data[key];
-
-								//console.log(results);
-
-								//The API returns a link to Google maps containing lat and long. This pulls it apart.
-								var googleLink = results['GoogleLink'];
-								var latLong = decodeURIComponent(googleLink.substring(googleLink.indexOf("=")+1, googleLink.lastIndexOf("(")));
-
-								var split = latLong.split(',');
-
-								//covert values to floats, to play nice with .LatLng() below.
-								var latitude = parseFloat(split[0]);
-								var longitude = parseFloat(split[1]);
-
-								//set the markers.
-								myLatlng = new google.maps.LatLng(latitude,longitude);
-
-								allMarkers = new google.maps.Marker({
-									position: myLatlng,
-									map: map,
-									title: marketName[counter],
-									html:
-											'<div class="markerPop">' +
-											'<h1>' + marketName[counter].substring(4) + '</h1>' + //substring removes distance from title
-											'<h3>' + results['Address'] + '</h3>' +
-											'<p>' + results['Products'].split(';') + '</p>' +
-											'<p>' + results['Schedule'] + '</p>' +
-											'</div>'
-								});
-
-								//put all lat long in array
-								allLatlng.push(myLatlng);
-
-								//Put the marketrs in an array
-								tempMarkerHolder.push(allMarkers);
-
-								counter++;
-								//console.log(counter);
-							};
-
-								google.maps.event.addListener(allMarkers, 'click', function () {
-									infowindow.setContent(this.html);
-									infowindow.open(map, this);
-								});
-
-
-								//console.log(allLatlng);
-								//  Make an array of the LatLng's of the markers you want to show
-								//  Create a new viewpoint bound
-								var bounds = new google.maps.LatLngBounds ();
-								//  Go through each...
-								for (var i = 0, LtLgLen = allLatlng.length; i < LtLgLen; i++) {
-								  //  And increase the bounds to take this point
-								  bounds.extend (allLatlng[i]);
-								}
-								//  Fit these bounds to the map
-								map.fitBounds (bounds);
-
-
-							}
-						});
-					}); //end .each
-				}
-			});
-
-        return false; // important: prevent the form from submitting
-    });
-});
+// var locations = [
+//     ['Location 1 Name', 'New York, NY', 'Location 1 URL'],
+//     ['Location 2 Name', 'Newark, NJ', 'Location 2 URL'],
+//     ['Location 3 Name', 'Philadelphia, PA', 'Location 3 URL']
+// ];
+//
+// var geocoder;
+// var map;
+// var bounds = new google.maps.LatLngBounds();
+//
+// function initialize() {
+//     map = new google.maps.Map(
+//     document.getElementById("map_canvas"), {
+//         center: new google.maps.LatLng(37.4419, -122.1419),
+//         zoom: 13,
+//         mapTypeId: google.maps.MapTypeId.ROADMAP
+//     });
+//     geocoder = new google.maps.Geocoder();
+//
+//     for (i = 0; i < locations.length; i++) {
+//
+//
+//         geocodeAddress(locations, i);
+//     }
+// }
+// google.maps.event.addDomListener(window, "load", initialize);
+//
+// function geocodeAddress(locations, i) {
+//     var title = locations[i][0];
+//     var address = locations[i][1];
+//     var url = locations[i][2];
+//     geocoder.geocode({
+//         'address': locations[i][1]
+//     },
+//
+//     function (results, status) {
+//         if (status == google.maps.GeocoderStatus.OK) {
+//             var marker = new google.maps.Marker({
+//                 icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+//                 map: map,
+//                 position: results[0].geometry.location,
+//                 title: title,
+//                 animation: google.maps.Animation.DROP,
+//                 address: address,
+//                 url: url
+//             })
+//             infoWindow(marker, map, title, address, url);
+//             bounds.extend(marker.getPosition());
+//             map.fitBounds(bounds);
+//         } else {
+//             alert("geocode of " + address + " failed:" + status);
+//         }
+//     });
+// }
+//
+// function infoWindow(marker, map, title, address, url) {
+//     google.maps.event.addListener(marker, 'click', function () {
+//         var html = "<div><h3>" + title + "</h3><p>" + address + "<br></div><a href='" + url + "'>View location</a></p></div>";
+//         iw = new google.maps.InfoWindow({
+//             content: html,
+//             maxWidth: 350
+//         });
+//         iw.open(map, marker);
+//     });
+// }
+//
+// function createMarker(results) {
+//     var marker = new google.maps.Marker({
+//         icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+//         map: map,
+//         position: results[0].geometry.location,
+//         title: title,
+//         animation: google.maps.Animation.DROP,
+//         address: address,
+//         url: url
+//     })
+//     bounds.extend(marker.getPosition());
+//     map.fitBounds(bounds);
+//     infoWindow(marker, map, title, address, url);
+//     return marker;
+// }

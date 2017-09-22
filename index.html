@@ -1,124 +1,127 @@
 
-<html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maltr</title>
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>Maltr</title>
 
-<!------------ jQuery    -------------->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-  <script src="http://code.jquery.com/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="http://malsup.github.com/jquery.cycle2.js"></script>
-<!------------ Bootstrap -------------->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+			<!------------ jQuery    -------------->
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	 		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+	  	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+	  	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+	  	<script src="http://code.jquery.com/jquery.min.js"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+			<script src="http://malsup.github.com/jquery.cycle2.js"></script>
+			<!------------ Bootstrap -------------->
+	    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-<link href="https://fonts.googleapis.com/css?family=Acme|Fredoka+One|Wendy+One" rel="stylesheet"> 
-
-
-<!------------ Custom CSS -------------->
-    <link rel="stylesheet" href="assets/js/vegas/vegas.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+			<link href="https://fonts.googleapis.com/css?family=Acme|Fredoka+One|Wendy+One" rel="stylesheet">
 
 
-<!------------ Fontawesome -------------->
-    <script src="https://use.fontawesome.com/9b6420240b.js"></script>
-
-<!--------- Firebase Reference ---------->
-    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-
-    <script src="assets/js/vegas/vegas.min.js"></script>
-		<script src="assets/js/app.js"></script>
-</head>
-
-<nav class="navbar navbar-expand navbar-light bg-light">
+			<!------------ Custom CSS -------------->
+	    <link rel="stylesheet" href="assets/js/vegas/vegas.min.css">
+	    <link rel="stylesheet" href="assets/css/style.css">
 
 
-    <ul class="navbar-nav d-none d-md-flex">
-      <li class="nav-item">
-        <a class="nav-link" href="form.html"><i class="nav-link fa fa-pencil" href="form.html"></i>Brewer Input</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" id="active" href="#"><i class="nav-link fa fa-beer" id="active" href="#"></i>Your Beer<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="near.html"><i class="nav-link fa fa-map-marker" href="near.html"></i>
-          Near Beer</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav d-md-none">
-      <li class="nav-item">
-        <a target="_blank" href="form.html"><i class="nav-link fa fa-pencil"></i></a>
-      </li>
-      <li class="nav-item active">
-        <i class="nav-link fa fa-beer" id="active" href="#"><span class="sr-only">(current)</span></i>
-      </li>
-      <li class="nav-item">
-          <a target="_blank" href="near.html"><i class="nav-link fa fa-map-marker"></i></a>
-      </li>
-    </ul>
-    <!-- <div class="d-md-none">
-      <ul>
-        <li><i class="fa fa-home"></i></li>
-        <li><i class="fa fa-question"></i></li>
-        <li><i class="fa fa-align-justify"></i></li>
-        <li><i class="fa fa-envelope"></i></li>
-      </ul>
-    </div> -->
+			<!------------ Fontawesome -------------->
+	    <script src="https://use.fontawesome.com/9b6420240b.js"></script>
 
-</nav>
-<body>
+			<!--------- Firebase Reference ---------->
+	    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 
+	    <script src="assets/js/vegas/vegas.min.js"></script>
+			<script src="assets/js/app.js"></script>
+			<script src="assets/js/map.js"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCshmQTjclLlratVZseO_Vys9ED0ItqR1A&callback=initMap"
+			async defer></script>
+	</head>
 
-  <div class="container">
-  <br/>
-    <div class="row">
-      <div class="col"></div>
-      <div class="col-8" align="center">
-        <h1 id="title">maltr</h1>
-      </div>
-      <div class="col"></div>
-    </div>
+	<nav class="navbar navbar-expand navbar-light bg-light">
+	    <ul class="navbar-nav d-none d-md-flex">
+			      <li class="nav-item">
+			        <a class="nav-link" href="form.html"><i class="nav-link fa fa-pencil" href="form.html"></i>Brewer Input</a>
+			      </li>
+			      <li class="nav-item active">
+			        <a class="nav-link" id="active" href="#"><i class="nav-link fa fa-beer" id="active" href="#"></i>Your Beer<span class="sr-only">(current)</span></a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="near.html"><i class="nav-link fa fa-map-marker" href="near.html"></i>
+			          Near Beer</a>
+			      </li>
+	    </ul>
+	    <ul class="navbar-nav d-md-none">
+			      <li class="nav-item">
+			        <a target="_blank" href="form.html"><i class="nav-link fa fa-pencil"></i></a>
+			      </li>
+			      <li class="nav-item active">
+			        <i class="nav-link fa fa-beer" id="active" href="#"><span class="sr-only">(current)</span></i>
+			      </li>
+			      <li class="nav-item">
+			          <a target="_blank" href="near.html"><i class="nav-link fa fa-map-marker"></i></a>
+			      </li>
+	    </ul>
+	    <!-- <div class="d-md-none">
+	      <ul>
+	        <li><i class="fa fa-home"></i></li>
+	        <li><i class="fa fa-question"></i></li>
+	        <li><i class="fa fa-align-justify"></i></li>
+	        <li><i class="fa fa-envelope"></i></li>
+	      </ul>
+	    </div> -->
+	</nav>
 
+	<body>
 
-
-	<br/>
-	<div class="row">
-  <div class="col">
-  </div>
-  <div class="col-10 col-md-6">
-    <div class="dropdown">
-      <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownBreweries" data-toggle="dropdown">
-        <a>Choose a Brewery</a>
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Ten10</a>
-        <a class="dropdown-item" href="#">Orange Blossom Brewing Co.</a>
-        <a class="dropdown-item" href="#">Dead Lizard</a>
-      </div>
-    </div>
-  </div>
-  <div class="col"></div>
-  </div>
-</div>
+	<div class="container">
+	  	<br>
+	    <div class="row">
+		      <div class="col"></div>
+				      <div class="col-8" align="center">
+				        <h1 id="title">maltr</h1>
+				      </div>
+		      <div class="col"></div>
+	    </div>
 
 
-<script>
 
-$("#example, body").vegas({
-    slides: [
-        { src: "./assets/images/beerglass.jpg" },
-        { src: "./assets/images/beertaps.jpeg" },
-        { src: "./assets/images/manyglasses.jpg" }
-    ]
-});
-</script>
-</body>
-</html>
+		<br>
+		<div class="row">
+			  <div class="col"></div>
+			  <div class="col-10 col-md-6">
+
+					    <div class="dropdown">
+						      <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownBreweries" data-toggle="dropdown">
+						        <a>Choose a Brewery</a>
+						      </button>
+								  <div class="dropdown-menu">
+							      		<a class="dropdown-item" href="#">Ten10</a>
+								        <a class="dropdown-item" href="#">Orange Blossom Brewing Co.</a>
+								        <a class="dropdown-item" href="#">Dead Lizard</a>
+								  </div>
+					    </div>
+
+			  </div>
+
+				<div class="col"></div>
+				<div id="map" style="width:750px; height:450px; border: 2px solid #3872ac;"></div>
+		</div>
+	</div> <!-- container -->
+
+
+	<script>
+
+	$("#example, body").vegas({
+	    slides: [
+	        { src: "./assets/images/beerglass.jpg" },
+	        { src: "./assets/images/beertaps.jpeg" },
+	        { src: "./assets/images/manyglasses.jpg" }
+	    ]
+	});
+	</script>
+	</body>
+	</html>
