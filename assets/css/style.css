@@ -62,3 +62,20 @@ input:focus {
   
   border: 1px solid rgb(20, 159, 104);
 }
+
+#dropdownBreweries {
+  width: 90%;
+  background-color: white;
+  color: black;
+}
+
+.dropdown-menu {
+  width: 90%;
+  text-align: center;
+}
+
+.dropdown-item:hover {
+  background-color: 	rgba(255, 69, 0, .7);
+  
+  color: black;
+}
