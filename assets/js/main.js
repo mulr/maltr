@@ -6,12 +6,27 @@
 
   console.log("Testing!");
 
+//   $('#dcategory li').click(function(){
+//     var x = $(this).text();
+//     $('input').val(x); //Give proper class 
+// })
+
+  $(".dropdown-item").on('click', function() {
+    // event.preventDefault();
+    console.log("this function was called");
+    var locName = $(this).text();
+
+    console.log(locName);
+
+
+});
+
   //DM - Need see why this doesn't work? This should replace script on index.html
   $("#example, body").vegas({
       slides: [
-          { src: "../images/beerglass.jpg" },
-          { src: "../images/beertaps.jpeg" },
-          { src: "../images/manyglasses.jpg" }
+          { src: "./assets/images/beerglass.jpg" },
+          { src: "./assets/images/beertaps.jpeg" },
+          { src: "./assets/images/manyglasses.jpg" }
       ]
   });
 

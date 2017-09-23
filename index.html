@@ -35,9 +35,7 @@
 	    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 
 	    <script src="assets/js/vegas/vegas.min.js"></script>
-			<script src="assets/js/app.js"></script>
-			<script src="assets/js/map.js"></script>
-			<script src="assets/js/main.js"></script>
+		
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCshmQTjclLlratVZseO_Vys9ED0ItqR1A&callback=initMap"
 			async defer></script>
 	</head>
@@ -94,35 +92,75 @@
 		<div class="row">
 			  <div class="col"></div>
 			  <div class="col-10 col-md-6">
+						<div class="dropdown show">
+								<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="selected-brewer" data-toggle="dropdown">
+									Choose a Brewery
+								</a>
+							
+								<div class="dropdown-menu" id="brewery-list">
+									<a class="dropdown-item" href="#">Ten10</a>
+									<a class="dropdown-item" href="#">Orange Blossom Brewing Co.</a>
+									<a class="dropdown-item" href="#">Dead Lizard</a>
+								</div>
+							</div>
 
-					    <div class="dropdown">
-						      <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownBreweries" data-toggle="dropdown">
-						        <a>Choose a Brewery</a>
+					    <!-- <div class="dropdown">
+									<button class="btn btn-secondary dropdown-toggle" type="button" id="selected-brewer" data-toggle="dropdown">
+											<a>Choose a Brewery</a>
 						      </button>
-								  <div class="dropdown-menu">
-							      		<a class="dropdown-item" href="#">Ten10</a>
-								        <a class="dropdown-item" href="#">Orange Blossom Brewing Co.</a>
-								        <a class="dropdown-item" href="#">Dead Lizard</a>
-								  </div>
-					    </div>
+								  <ul class="dropdown-menu" id="dropper">
+							      		<li class="dropdown-item" type="button" val="Ten10">Ten10</li>
+								        <li class="dropdown-item" type="button">Orange Blossom Brewing Co.</li>
+								        <li class="dropdown-item" type="button">Dead Lizard</li>
+								  </ul>
+					    </div> -->
 
 			  </div>
 
 				<div class="col"></div>
-				<div id="map_canvas"></div>
 		</div>
+		<br/>
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-12 col-md-10 col-lg-8" id="map-div">
+				<div id="map_canvas"></div>
+			</div>
+			<div class="col"></div>
+		</div>
+		<br/>
+		<div class="card" id="results">
+				<div class="card-header"><h4>Results</h4></div>
+					<table class="table table-hover table-responsive" id="listed-results">
+							
+							<thead>
+								<tr>
+									<th><a>Location Name</a></th>
+									<th><a>Address</a></th>
+									<th><a>City</a></th>
+									<th><a>State</a></th>
+									<th><a>Zip</a></th>
+								</tr>
+							</thead>
+							<tbody>
+							 
+							</tbody>
+						</table>
+			</div>
 	</div> <!-- container -->
 
-
+	<script src="assets/js/app.js"></script>
+	<script src="assets/js/map.js"></script>
+	<script src="assets/js/main.js"></script>
+	
 	<script>
 
-	$("#example, body").vegas({
-	    slides: [
-	        { src: "./assets/images/beerglass.jpg" },
-	        { src: "./assets/images/beertaps.jpeg" },
-	        { src: "./assets/images/manyglasses.jpg" }
-	    ]
-	});
+	// $("#example, body").vegas({
+	//     slides: [
+	//         { src: "./assets/images/beerglass.jpg" },
+	//         { src: "./assets/images/beertaps.jpeg" },
+	//         { src: "./assets/images/manyglasses.jpg" }
+	//     ]
+	// });
 	</script>
 	</body>
 	</html>
