@@ -32,9 +32,10 @@
             <script src="https://use.fontawesome.com/9b6420240b.js"></script>
             
         <!--------- Firebase Reference ---------->      
-            <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
         
             <script src="assets/js/vegas/vegas.min.js"></script>
+
         </head>
         
         <nav class="navbar navbar-expand navbar-light bg-light">
@@ -104,7 +105,7 @@
                 <div class="row">
                   <div class="col-4">
                     <label for="targetLocationState-input">State</label>
-                    <select class="form-control" id="state" name="state">
+                    <select class="form-control" id="targetLocationState-input" name="state">
                       <option value="">N/A</option>
                       <option value="AK">Alaska</option>
                       <option value="AL">Alabama</option>
@@ -169,7 +170,7 @@
                 <label for="targetLocationPlaceID-input">Place ID</label>
                 <input type="text" class="form-control" id="targetLocationPlaceID-input" placeholder="Google Place ID">
                 <br/>
-                <button type="submit" id="brewer-button" class="btn btn-primary">Submit Information</button>
+                <button type="submit" id="add-targetLocation" class="btn btn-primary">Submit Information</button>
                 
               </div>
             </form>
@@ -189,6 +190,10 @@
             ]
         });
         </script>
+
+        
+        <!--------- Form.js Reference ---------->      
+            <script src="assets/js/form.js"></script>
         </body>
         </html>
         
