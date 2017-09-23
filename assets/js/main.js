@@ -1,4 +1,23 @@
 
+
+
+
+
+
+  console.log("Testing!");
+
+  //DM - Need see why this doesn't work? This should replace script on index.html
+  $("#example, body").vegas({
+      slides: [
+          { src: "../images/beerglass.jpg" },
+          { src: "../images/beertaps.jpeg" },
+          { src: "../images/manyglasses.jpg" }
+      ]
+  });
+
+
+
+
   // $( "#autocomplete" ).autocomplete({
   //   source: [ "Ten10", "Orange Blossom Brewing Co.", "Dead Lizard" ]
   // });
@@ -14,14 +33,3 @@
   //         setTimeout(doSlideshow,1000);
   //     });
   // }
-
-  console.log("Testing!");
-
-
-  $("#example, body").vegas({
-      slides: [
-          { src: "../images/beerglass.jpg" },
-          { src: "../images/beertaps.jpeg" },
-          { src: "../images/manyglasses.jpg" }
-      ]
-  });
