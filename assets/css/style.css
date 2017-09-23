@@ -64,7 +64,7 @@ input:focus {
 }
 
 #dropdownBreweries {
-  width: 90%;
+  width: 100%;
   background-color: white;
   color: black;
 }
@@ -87,7 +87,8 @@ input:focus {
 
 #map_canvas {
 height: 500px;
-width: 500px;
-margin: 0px;
+width: 80%;
+margin: auto;
 padding: 0px
+border: 2px solid #3872ac;
 }

@@ -2,12 +2,52 @@
 
 
       var map;
+      var marker;
+      var myLatLng = {lat: -25.363, lng: 131.044};
+
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
+        var orlando = new google.maps.LatLng(28.5444896, -81.3810539);
+        var orlandoBrewing = new google.maps.LatLng(28.5247212, -81.3909102);
+
+
+        map = new google.maps.Map(document.getElementById('map_canvas'), {
+          // center: {lat: 28.5444896, lng: -81.3810539},
+          center: orlando,
+          zoom: 10
         });
+
+        //What's in the text box:
+        var contentString = "<p>Four loko williamsburg art party readymade meggings, kombucha selvage sriracha glossier mlkshk humblebrag four dollar toast ethical. Messenger bag health goth forage la croix. Affogato truffaut banh mi beard semiotics. Hell of listicle truffaut man braid, aesthetic cloud bread iceland flannel yuccie activated charcoal ethical crucifix williamsburg. Narwhal tumblr fixie echo park. Glossier venmo normcore, 8-bit tote bag gluten-free before they sold out butcher knausgaard banjo chia synth. Pabst single-origin coffee whatever four loko. IPhone post-ironic cornhole 3 wolf moon wayfarers. Fingerstache PBR&B copper mug keffiyeh pop-up church-key neutra ramps distillery pickled umami bicycle rights cronut. Authentic PBR&B brunch tilde venmo, pok pok plaid. Meditation street art gastropub franzen edison bulb, messenger bag hell of health goth stumptown deep v.</p>";
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        //Puts a marker on map:
+        marker = new google.maps.Marker({
+          position: orlandoBrewing,
+          map: map,
+          title: 'Hello World!'
+        });
+
+        //Opens the text box when we click:
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
       }
+
+
+
+      // $("#map_canvas").hide();
+      //
+      // $('.dropdown-item').click(function(e){
+      //     $("#map_canvas").fadeIn('slow');
+      // });
+
+
+
+
 
 
 
