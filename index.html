@@ -35,9 +35,7 @@
 	    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 
 	    <script src="assets/js/vegas/vegas.min.js"></script>
-		
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCshmQTjclLlratVZseO_Vys9ED0ItqR1A&callback=initMap"
-			async defer></script>
+
 	</head>
 
 	<nav class="navbar navbar-expand navbar-light bg-light">
@@ -96,11 +94,11 @@
 								<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="selected-brewer" data-toggle="dropdown">
 									Choose a Brewery
 								</a>
-							
+
 								<div class="dropdown-menu" id="brewery-list">
-									<a class="dropdown-item" href="#">Ten10</a>
-									<a class="dropdown-item" href="#">Orange Blossom Brewing Co.</a>
-									<a class="dropdown-item" href="#">Dead Lizard</a>
+									<a class="dropdown-item" id="ten10Click" href="#">Ten10</a>
+									<a class="dropdown-item" id="obpClick" href="#">Orange Blossom Brewing Co.</a>
+									<a class="dropdown-item" id="deadLizardClick" href="#">Dead Lizard</a>
 								</div>
 							</div>
 
@@ -131,7 +129,7 @@
 		<div class="card" id="results">
 				<div class="card-header"><h4>Results</h4></div>
 					<table class="table table-hover table-responsive" id="listed-results">
-							
+
 							<thead>
 								<tr>
 									<th><a>Location Name</a></th>
@@ -142,16 +140,17 @@
 								</tr>
 							</thead>
 							<tbody>
-							 
+
 							</tbody>
 						</table>
 			</div>
 	</div> <!-- container -->
-
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArwCBv7GwyMrbrFvr4QiXn7dak1uGQz18&callback=initMap"
+	async defer></script>
 	<script src="assets/js/app.js"></script>
 	<script src="assets/js/map.js"></script>
 	<script src="assets/js/main.js"></script>
-	
+
 	<script>
 
 	// $("#example, body").vegas({

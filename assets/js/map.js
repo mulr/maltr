@@ -23,73 +23,127 @@
 //---------------------------------------
 
 
-// function initMap() {
-//
-//   var map = new google.maps.Map(document.getElementById("map_canvas"), {
-//     center: {lat: 28.5444896, lng: -81.3810539},
-//     zoom: 10
-//   });
-//
-//   var infowindow = new google.maps.InfoWindow();
-//   var service = new google.maps.places.PlacesService(map_canvas);
-//
-//   service.getDetails({
-//     placeId: 'ChIJWx4Z85R654gRnDxKft1rD3Q'
-//   }, function(place, status) {
-//     if (status === google.maps.places.PlacesServiceStatus.OK) {
-//       var marker = new google.maps.Marker({
-//         map: map,
-//         position: place.geometry.location
-//       });
-//       google.maps.event.addListener(marker, 'click', function() {
-//         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-//           'Place ID: ' + place.place_id + '<br>' +
-//           place.formatted_address + '</div>');
-//         infowindow.open(map, this);
-//       });
-//     }
-//   });
-// }
+
 
   function initMap() {
-    //Need reference firebase =
 
     var locations = [
-      ['Bondi Beach', -33.890542, 151.274856, 4],
-      ['Coogee Beach', -33.923036, 151.259052, 5],
-      ['Cronulla Beach', -34.028249, 151.157507, 3],
-      ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-      ['Maroubra Beach', -33.950198, 151.259302, 1]
+      // ['Bondi Beach', -33.890542, 151.274856, 4],
+      // ['Coogee Beach', -33.923036, 151.259052, 5],
+      // ['Cronulla Beach', -34.028249, 151.157507, 3],
+      // ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+      // ['Maroubra Beach', -33.950198, 151.259302, 1]
     ];
 
+    var tenLocations = [
+      ["Ten10 Brewery", 28.563698, -81.365967],
+      ["Ray's Fish", 28.672278, -81.449926],
+      ["Pig Floyd’s Urban Barbakoa", 28.563082, -81.364657],
+      ["The Rusty Spoon", 28.540764, -81.380499],
+      ["Mitchell's Fish Market", 28.601648, -81.363208]
+    ];
+    var obpLocations = [
+      ["Avenue Gastro", 28.541801, -81.378895],
+      ["Funky Monkey", 28.432785, -81.471161],
+      ["Nova Restaurant",28.564531, -81.372671],
+      ["Ravenous Pig",28.593358, -81.355975],
+      ["Orange County Brewers",28.544308, -81.378818]
+    ];
+    var deadLizLocations = [
+      ["Orange County Brewers", 28.544308, -81.378818],
+      ["Funky Monkey", 28.376808, -81.506985],
+      ["Earl's Kitchen + Bar", 28.485565, -81.43155],
+      ["K Restaurant", 28.567063, -81.389679],
+      ["Luma on Park", 28.596115, -81.350843]
+    ];
+
+
+    //Default Map Positions
     var orlando = new google.maps.LatLng(28.5444896, -81.3810539);
     var orlandoBrewing = new google.maps.LatLng(28.5247212, -81.3909102);
 
-    map = new google.maps.Map(document.getElementById('map_canvas'), {
-      // center: {lat: 28.5444896, lng: -81.3810539},
-      center: orlando,
-      zoom: 10
-    });
+        map = new google.maps.Map(document.getElementById('map_canvas'), {
+          center: orlando,
+          zoom: 10
+        });
 
     var infowindow = new google.maps.InfoWindow();
-
     var marker, i;
 
-    for (i = 0; i < locations.length; i++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
 
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
+    //FUNCTIONS
+    // ADD Ten10 Brewers Markers
+    function addMarkers1010(){
+      for (i = 0; i < tenLocations.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(tenLocations[i][1], tenLocations[i][2]),
+          map: map
+        });
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent("REVIEW DATA <br><br>" + tenLocations[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+      }
     }
-  }
+    //ADD Orange Blossom Brewing Markers
+    function addMarkersOBP(){
+      for (i = 0; i < obpLocations.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(obpLocations[i][1], obpLocations[i][2]),
+          map: map
+        });
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent("REVIEW DATA <br><br>" + obpLocations[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+      }
+    };
+    // ADD Dead Lizard Markers
+    function addMarkersLizard(){
+      for (i = 0; i < deadLizLocations.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(deadLizLocations[i][1], deadLizLocations[i][2]),
+          map: map
+        });
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent("REVIEW DATA <br><br>" + deadLizLocations[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+      }
+    };
+
+
+
+    //ON CLICK
+    $(document).on("click", ".dropdown-item", function(event) {
+        // event.preventDefault();
+        map = new google.maps.Map(document.getElementById('map_canvas'), {
+          center: orlando,
+          zoom: 10
+        });
+        var brewery = $(this).attr("ID");
+        console.log("Brewery Clicked: " + brewery);
+        if( brewery === "ten10Click" ) {
+          // locations = locations[];
+          // locations.push(tenLocations);
+          // console.log("Locations Array: " + locations);
+          addMarkers1010();
+        } else if ( brewery === "obpClick") {
+          addMarkersOBP();
+        } else {
+          addMarkersLizard();
+        }
+    });
+
+
+
+    }
 
 
 
