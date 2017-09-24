@@ -26,7 +26,6 @@
 
 
   function initMap() {
-    //Need reference firebase =
 
     var locations = [
       // ['Bondi Beach', -33.890542, 151.274856, 4],
@@ -36,22 +35,30 @@
       // ['Maroubra Beach', -33.950198, 151.259302, 1]
     ];
 
-    var brewsArray = [];
-
     var tenLocations = [
       ["Ten10 Brewery", 28.563698, -81.365967],
-      ["Ray's Fish", 28.672278, -81.449926]
+      ["Ray's Fish", 28.672278, -81.449926],
+      ["Pig Floyd’s Urban Barbakoa", 28.563082, -81.364657],
+      ["The Rusty Spoon", 28.540764, -81.380499],
+      ["Mitchell's Fish Market", 28.601648, -81.363208]
     ];
     var obpLocations = [
       ["Avenue Gastro", 28.541801, -81.378895],
-      ["Funky Monkey", 28.432785, -81.471161]
+      ["Funky Monkey", 28.432785, -81.471161],
+      ["Nova Restaurant",28.564531, -81.372671],
+      ["Ravenous Pig",28.593358, -81.355975],
+      ["Orange County Brewers",28.544308, -81.378818]
     ];
     var deadLizLocations = [
       ["Orange County Brewers", 28.544308, -81.378818],
-      ["Funky Monkey", 28.376808, -81.506985]
+      ["Funky Monkey", 28.376808, -81.506985],
+      ["Earl's Kitchen + Bar", 28.485565, -81.43155],
+      ["K Restaurant", 28.567063, -81.389679],
+      ["Luma on Park", 28.596115, -81.350843]
     ];
 
-    //Default Positions
+
+    //Default Map Positions
     var orlando = new google.maps.LatLng(28.5444896, -81.3810539);
     var orlandoBrewing = new google.maps.LatLng(28.5247212, -81.3909102);
 
@@ -65,7 +72,6 @@
 
 
     //FUNCTIONS
-
     // ADD Ten10 Brewers Markers
     function addMarkers1010(){
       for (i = 0; i < tenLocations.length; i++) {
@@ -75,13 +81,13 @@
         });
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            infowindow.setContent(tenLocations[i][0]);
+            infowindow.setContent("REVIEW DATA <br><br>" + tenLocations[i][0]);
             infowindow.open(map, marker);
           }
         })(marker, i));
       }
     }
-
+    //ADD Orange Blossom Brewing Markers
     function addMarkersOBP(){
       for (i = 0; i < obpLocations.length; i++) {
         marker = new google.maps.Marker({
@@ -90,13 +96,13 @@
         });
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            infowindow.setContent(obpLocations[i][0]);
+            infowindow.setContent("REVIEW DATA <br><br>" + obpLocations[i][0]);
             infowindow.open(map, marker);
           }
         })(marker, i));
       }
     };
-
+    // ADD Dead Lizard Markers
     function addMarkersLizard(){
       for (i = 0; i < deadLizLocations.length; i++) {
         marker = new google.maps.Marker({
@@ -105,7 +111,7 @@
         });
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            infowindow.setContent(deadLizLocations[i][0]);
+            infowindow.setContent("REVIEW DATA <br><br>" + deadLizLocations[i][0]);
             infowindow.open(map, marker);
           }
         })(marker, i));
@@ -117,6 +123,10 @@
     //ON CLICK
     $(document).on("click", ".dropdown-item", function(event) {
         // event.preventDefault();
+        map = new google.maps.Map(document.getElementById('map_canvas'), {
+          center: orlando,
+          zoom: 10
+        });
         var brewery = $(this).attr("ID");
         console.log("Brewery Clicked: " + brewery);
         if( brewery === "ten10Click" ) {
