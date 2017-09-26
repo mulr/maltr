@@ -77,6 +77,7 @@
       for (i = 0; i < tenLocations.length; i++) {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(tenLocations[i][1], tenLocations[i][2]),
+          animation: google.maps.Animation.DROP,
           map: map
         });
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -92,6 +93,7 @@
       for (i = 0; i < obpLocations.length; i++) {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(obpLocations[i][1], obpLocations[i][2]),
+          animation: google.maps.Animation.DROP,
           map: map
         });
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -107,6 +109,7 @@
       for (i = 0; i < deadLizLocations.length; i++) {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(deadLizLocations[i][1], deadLizLocations[i][2]),
+          animation: google.maps.Animation.DROP,
           map: map
         });
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
