@@ -12,7 +12,7 @@
  
 //Firebase end, begin other code:
 //---------------------------------------
-
+var markersArray = [];
 
 //let's build a map
 
@@ -64,20 +64,28 @@
               place.formatted_address + '</div>');
             infowindow.open(map, this);
           });
+  //places markers in array for future use --mainly to remove the markers
+          markersArray.push(marker);
         } 
       });
-    
+     
+
     } 
       // Handle the errors
       }, function(errorObject) {
         console.log("Errors handled: " + errorObject.code);
   
-    });
-    
+    });   
   });
-
-
-    }
+}
+//function to remove markers from map
+    function DeleteMarkers() {
+      //Loop through all the markers and remove
+      for (var i = 0; i < markersArray.length; i++) {
+          markersArray[i].setMap(null);
+      }
+      markers = [];
+  };
 
 
 
