@@ -83,9 +83,14 @@ $(".dropdown-item").on('click', function() {
 		console.log(childSnapshot.val().targetLocationZip);
 		console.log(childSnapshot.val().targetLocationPlaceID);
 
-		// Add each train's data into the table
-		$("#listed-results > tbody").append("<tr><td>" + childSnapshot.val().targetLocationName + "</td><td>" + childSnapshot.val().targetLocationAddress1 + "</td><td>" +
-		childSnapshot.val().targetLocationCity + "</td><td>" + childSnapshot.val().targetLocationState + "</td><td>" + childSnapshot.val().targetLocationZip + "</td></tr>");
+		// Add each brewer's data into the table
+		$("#listed-results").append("<tr>" + 
+    "<td>" + childSnapshot.val().targetLocationName + "</td>" +
+    "<td>" + childSnapshot.val().targetLocationAddress1 + "</td>" +
+    "<td>" + childSnapshot.val().targetLocationCity + "</td>" +
+    "<td>" + childSnapshot.val().targetLocationState + "</td>" +
+    "<td>" + childSnapshot.val().targetLocationZip + "</td>" +
+    "</tr>");
 
 		// Handle the errors
 		}, function(errorObject) {
