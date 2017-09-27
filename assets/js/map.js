@@ -1,152 +1,119 @@
 //FIREBASE - from Gabe:
-  var config = {
-      apiKey: "AIzaSyD9zk9bTMjEZ9sqWATtCz0QI2TQ48InrVE",
-      authDomain: "maltr-2096b.firebaseapp.com",
-      databaseURL: "https://maltr-2096b.firebaseio.com",
-      projectId: "maltr-2096b",
-      storageBucket: "maltr-2096b.appspot.com",
-      messagingSenderId: "12160681601"
-  	};
+var config = {
+    apiKey: "AIzaSyD9zk9bTMjEZ9sqWATtCz0QI2TQ48InrVE",
+    authDomain: "maltr-2096b.firebaseapp.com",
+    databaseURL: "https://maltr-2096b.firebaseio.com",
+    projectId: "maltr-2096b",
+    storageBucket: "maltr-2096b.appspot.com",
+    messagingSenderId: "12160681601"
+};
 
-  firebase.initializeApp(config);
 
-  var db = firebase.database();
 
-  db.ref().on("value", function(snapshot) {
 
-    // Log everything that's coming out of snapshot
-    console.log(snapshot.val());
-    console.log(snapshot.val().brewer);
+$("#map_canvas").hide();
 
-  });
 //Firebase end, begin other code:
 //---------------------------------------
+var markersArray = [];
 
+//let's build a map
 
+function initMap() {
 
-
-  function initMap() {
-
-    var locations = [
-      // ['Bondi Beach', -33.890542, 151.274856, 4],
-      // ['Coogee Beach', -33.923036, 151.259052, 5],
-      // ['Cronulla Beach', -34.028249, 151.157507, 3],
-      // ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-      // ['Maroubra Beach', -33.950198, 151.259302, 1]
-    ];
-
-    var tenLocations = [
-      ["Ten10 Brewery", 28.563698, -81.365967],
-      ["Ray's Fish", 28.672278, -81.449926],
-      ["Pig Floyd’s Urban Barbakoa", 28.563082, -81.364657],
-      ["The Rusty Spoon", 28.540764, -81.380499],
-      ["Mitchell's Fish Market", 28.601648, -81.363208]
-    ];
-    var obpLocations = [
-      ["Avenue Gastro", 28.541801, -81.378895],
-      ["Funky Monkey", 28.432785, -81.471161],
-      ["Nova Restaurant",28.564531, -81.372671],
-      ["Ravenous Pig",28.593358, -81.355975],
-      ["Orange County Brewers",28.544308, -81.378818]
-    ];
-    var deadLizLocations = [
-      ["Orange County Brewers", 28.544308, -81.378818],
-      ["Funky Monkey", 28.376808, -81.506985],
-      ["Earl's Kitchen + Bar", 28.485565, -81.43155],
-      ["K Restaurant", 28.567063, -81.389679],
-      ["Luma on Park", 28.596115, -81.350843]
-    ];
-
-
-    //Default Map Positions
-    var orlando = new google.maps.LatLng(28.5444896, -81.3810539);
-    var orlandoBrewing = new google.maps.LatLng(28.5247212, -81.3909102);
-
-        map = new google.maps.Map(document.getElementById('map_canvas'), {
-          center: orlando,
-          zoom: 10
-        });
-
-    var infowindow = new google.maps.InfoWindow();
-    var marker, i;
+    //map is centered in Orlando wit latlng of 28.5445 -81.381
 
 
     //FUNCTIONS
-    // ADD Ten10 Brewers Markers
-    function addMarkers1010(){
-      for (i = 0; i < tenLocations.length; i++) {
-        marker = new google.maps.Marker({
-          position: new google.maps.LatLng(tenLocations[i][1], tenLocations[i][2]),
-          animation: google.maps.Animation.DROP,
-          map: map
-        });
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            infowindow.setContent("REVIEW DATA <br><br>" + tenLocations[i][0]);
-            infowindow.open(map, marker);
-          }
-        })(marker, i));
-      }
-    }
-    //ADD Orange Blossom Brewing Markers
-    function addMarkersOBP(){
-      for (i = 0; i < obpLocations.length; i++) {
-        marker = new google.maps.Marker({
-          position: new google.maps.LatLng(obpLocations[i][1], obpLocations[i][2]),
-          animation: google.maps.Animation.DROP,
-          map: map
-        });
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            infowindow.setContent("REVIEW DATA <br><br>" + obpLocations[i][0]);
-            infowindow.open(map, marker);
-          }
-        })(marker, i));
-      }
-    };
-    // ADD Dead Lizard Markers
-    function addMarkersLizard(){
-      for (i = 0; i < deadLizLocations.length; i++) {
-        marker = new google.maps.Marker({
-          position: new google.maps.LatLng(deadLizLocations[i][1], deadLizLocations[i][2]),
-          animation: google.maps.Animation.DROP,
-          map: map
-        });
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function() {
-            infowindow.setContent("REVIEW DATA <br><br>" + deadLizLocations[i][0]);
-            infowindow.open(map, marker);
-          }
-        })(marker, i));
-      }
-    };
 
-
-
-    //ON CLICK
-    $(document).on("click", ".dropdown-item", function(event) {
+    //when brewery is selected from drop down, do this
+    $(".dropdown-item").on('click', function() {
         // event.preventDefault();
-        map = new google.maps.Map(document.getElementById('map_canvas'), {
-          center: orlando,
-          zoom: 10
+        $("#map_canvas").show();
+
+        var map = new google.maps.Map(document.getElementById('map_canvas'), {
+            center: {
+                lat: 28.5445,
+                lng: -81.381
+            },
+            zoom: 10
         });
-        var brewery = $(this).attr("ID");
-        console.log("Brewery Clicked: " + brewery);
-        if( brewery === "ten10Click" ) {
-          // locations = locations[];
-          // locations.push(tenLocations);
-          // console.log("Locations Array: " + locations);
-          addMarkers1010();
-        } else if ( brewery === "obpClick") {
-          addMarkersOBP();
-        } else {
-          addMarkersLizard();
+        var infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+
+        var idAdded = 0;
+        //declare empty array
+        var targetMarkers = [];
+        //declared to only reference te selected brewer
+        var brewerSelected = $(this).text();
+        //function to place the markers on the map
+        function mapmarkers() {
+            for (i = 0; i < targetMarkers.length; i++) {
+
+                service.getDetails({
+                    placeId: targetMarkers[i]
+                }, function(place, status) {
+                    if (status == google.maps.places.PlacesServiceStatus.OK) {
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            animation: google.maps.Animation.DROP,
+                            position: place.geometry.location
+                        });
+                        //adds the info windows to each marker       
+                        google.maps.event.addListener(marker, 'click', function() {
+                            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                                'Place ID: ' + place.place_id + '<br>' +
+                                place.formatted_address + '</div>');
+                            infowindow.open(map, this);
+                        });
+                        //places markers in array for future use --mainly to remove the markers
+                        markersArray.push(marker);
+                    } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+                        console.log('OVER_QUERY_LIMIT');
+                    }
+                });
+            }
+
         }
+        //at child_added do this
+        database.ref().orderByChild("brewer").equalTo(brewerSelected).on("child_added", function(childSnapshot) {
+            //push the name and place ID into the targetMarkers array 
+            console.log(childSnapshot.val());
+
+            targetMarkers.push([childSnapshot.val().targetLocationPlaceID]);
+            //increments for every child added
+            idAdded++;
+
+
+            console.log('the number of ids added is ' + idAdded);
+
+            console.log('the array is ' + targetMarkers);
+
+            // Handle the errors
+        }, function(errorObject) {
+            console.log("Errors handled: " + errorObject.code);
+
+        });
+        //gets the total value of the database
+        database.ref().orderByChild("brewer").equalTo(brewerSelected).on("value", function(childSnapshot) {
+            //compares the number of children to idAdded variable in, determing all children have been accounted
+            if (childSnapshot.numChildren() === idAdded) {
+              //when this happens, mapmarkers is called
+                mapmarkers();
+            }
+
+        });
     });
+}
 
-
-
+//function to remove markers from map
+function DeleteMarkers() {
+    //Loop through all the markers and remove
+    for (var i = 0; i < markersArray.length; i++) {
+        markersArray[i].setMap(null);
     }
+    markers = [];
+};
 
 
 
@@ -156,50 +123,49 @@
 
 //map1
 //----------------------------------------
-      // var map;
-      // var marker;
-      // var myLatLng = {lat: -25.363, lng: 131.044};
-      //
-      // function initMap() {
-      //   var orlando = new google.maps.LatLng(28.5444896, -81.3810539);
-      //   var orlandoBrewing = new google.maps.LatLng(28.5247212, -81.3909102);
-      //
-      //
-      //   map = new google.maps.Map(document.getElementById('map_canvas'), {
-      //     // center: {lat: 28.5444896, lng: -81.3810539},
-      //     center: orlando,
-      //     zoom: 10
-      //   });
-      //
-      //   //What's in the text box:
-      //   var contentString = "<p>Four loko williamsburg art party readymade meggings, kombucha selvage sriracha glossier mlkshk humblebrag four dollar toast ethical. Messenger bag health goth forage la croix. Affogato truffaut banh mi beard semiotics. Hell of listicle truffaut man braid, aesthetic cloud bread iceland flannel yuccie activated charcoal ethical crucifix williamsburg. Narwhal tumblr fixie echo park. Glossier venmo normcore, 8-bit tote bag gluten-free before they sold out butcher knausgaard banjo chia synth. Pabst single-origin coffee whatever four loko. IPhone post-ironic cornhole 3 wolf moon wayfarers. Fingerstache PBR&B copper mug keffiyeh pop-up church-key neutra ramps distillery pickled umami bicycle rights cronut. Authentic PBR&B brunch tilde venmo, pok pok plaid. Meditation street art gastropub franzen edison bulb, messenger bag hell of health goth stumptown deep v.</p>";
-      //
-      //   var infowindow = new google.maps.InfoWindow({
-      //     content: contentString
-      //   });
-      //
-      //   //Puts a marker on map:
-      //   marker = new google.maps.Marker({
-      //     position: orlandoBrewing,
-      //     map: map,
-      //     title: 'Hello World!'
-      //   });
-      //
-      //   //Opens the text box when we click:
-      //   marker.addListener('click', function() {
-      //     infowindow.open(map, marker);
-      //   });
-      //
-      // }
+// var map;
+// var marker;
+// var myLatLng = {lat: -25.363, lng: 131.044};
+//
+// function initMap() {
+//   var orlando = new google.maps.LatLng(28.5444896, -81.3810539);
+//   var orlandoBrewing = new google.maps.LatLng(28.5247212, -81.3909102);
+//
+//
+//   map = new google.maps.Map(document.getElementById('map_canvas'), {
+//     // center: {lat: 28.5444896, lng: -81.3810539},
+//     center: orlando,
+//     zoom: 10
+//   });
+//
+//   //What's in the text box:
+//   var contentString = "<p>Four loko williamsburg art party readymade meggings, kombucha selvage sriracha glossier mlkshk humblebrag four dollar toast ethical. Messenger bag health goth forage la croix. Affogato truffaut banh mi beard semiotics. Hell of listicle truffaut man braid, aesthetic cloud bread iceland flannel yuccie activated charcoal ethical crucifix williamsburg. Narwhal tumblr fixie echo park. Glossier venmo normcore, 8-bit tote bag gluten-free before they sold out butcher knausgaard banjo chia synth. Pabst single-origin coffee whatever four loko. IPhone post-ironic cornhole 3 wolf moon wayfarers. Fingerstache PBR&B copper mug keffiyeh pop-up church-key neutra ramps distillery pickled umami bicycle rights cronut. Authentic PBR&B brunch tilde venmo, pok pok plaid. Meditation street art gastropub franzen edison bulb, messenger bag hell of health goth stumptown deep v.</p>";
+//
+//   var infowindow = new google.maps.InfoWindow({
+//     content: contentString
+//   });
+//
+//   //Puts a marker on map:
+//   marker = new google.maps.Marker({
+//     position: orlandoBrewing,
+//     map: map,
+//     title: 'Hello World!'
+//   });
+//
+//   //Opens the text box when we click:
+//   marker.addListener('click', function() {
+//     infowindow.open(map, marker);
+//   });
+//
+// }
 //---------------------------------------------------
 
 
-      // $("#map_canvas").hide();
-      //
-      // $('.dropdown-item').click(function(e){
-      //     $("#map_canvas").fadeIn('slow');
-      // });
-
+// $("#map_canvas").hide();
+//
+// $('.dropdown-item').click(function(e){
+//     $("#map_canvas").fadeIn('slow');
+// });
 
 
 

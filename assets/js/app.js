@@ -59,14 +59,17 @@ var database = firebase.database();
 
 
 $("#results").hide();
-$("#map_canvas").hide();
+// $("#map_canvas").hide();
 
 // PROCESSES
+
+https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
+
 
 $(".dropdown-item").on('click', function() {
     // event.preventDefault();
   $("#results").show();
-  $("#map_canvas").show();
+//   $("#map_canvas").show();
 	// Removes all previous values in the table EXCEPT for the header
 	$("#listed-results tr").remove();
 
