@@ -58,13 +58,15 @@ var database = firebase.database();
 // Append brewer's product locations to the table below maltr map
 
 
-
+$("#results").hide();
+$("#map_canvas").hide();
 
 // PROCESSES
 
 $(".dropdown-item").on('click', function() {
     // event.preventDefault();
-
+  $("#results").show();
+  $("#map_canvas").show();
 	// Removes all previous values in the table EXCEPT for the header
 	$("#listed-results tr").remove();
 
@@ -84,7 +86,7 @@ $(".dropdown-item").on('click', function() {
 		console.log(childSnapshot.val().targetLocationPlaceID);
 
 		// Add each brewer's data into the table
-		$("#listed-results").append("<tr>" + 
+		$("#listed-results").append("<tr>" +
     "<td>" + childSnapshot.val().targetLocationName + "</td>" +
     "<td>" + childSnapshot.val().targetLocationAddress1 + "</td>" +
     "<td>" + childSnapshot.val().targetLocationCity + "</td>" +
