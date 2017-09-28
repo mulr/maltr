@@ -81,9 +81,12 @@ input:focus {
   color: black;
 }
 #results {
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
+  padding: 0;
   bg-opacity: 0.4;
   background-color: white;
+  border: 2px solid #3872ac;
+
 }
 #select {
   margin: auto;
@@ -93,7 +96,7 @@ input:focus {
     /*MAP CSS*/
 
 #map-div {
-  padding: 0 !important;
+  /*padding: 0 !important;*/
 }
 #map_canvas {
 height: 375px;
@@ -102,3 +105,62 @@ margin: auto;
 padding: 0px;
 border: 2px solid #3872ac;
 }
+
+
+
+/*==========  Mobile First Method  ==========*/
+
+    /* Custom, iPhone Retina */
+    @media only screen and (min-width : 320px) {
+
+    }
+
+    /* Extra Small Devices, Phones */
+    @media only screen and (min-width : 480px) {
+      .collapse {
+        width: 0px;
+      }
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+      .collapse {
+        /*width: 100%;*/
+      }
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+    }
+    /*==========  Non-Mobile First Method  ==========*/
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (max-width : 1200px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (max-width : 992px) {
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (max-width : 768px) {
+
+    }
+
+    /* Extra Small Devices, Phones */
+    @media only screen and (max-width : 480px) {
+
+    }
+
+    /* Custom, iPhone Retina */
+    @media only screen and (max-width : 320px) {
+
+    }

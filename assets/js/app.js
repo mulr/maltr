@@ -92,8 +92,8 @@ $(".dropdown-item").on('click', function() {
 		$("#listed-results").append("<tr>" +
     "<td>" + childSnapshot.val().targetLocationName + "</td>" +
     "<td>" + childSnapshot.val().targetLocationAddress1 + "</td>" +
-    "<td>" + childSnapshot.val().targetLocationCity + "</td>" +
-    "<td>" + childSnapshot.val().targetLocationState + "</td>" +
+    "<td class='coll'>" + childSnapshot.val().targetLocationCity + "</td>" +
+    "<td class='coll'>" + childSnapshot.val().targetLocationState + "</td>" +
     "<td>" + childSnapshot.val().targetLocationZip + "</td>" +
     "</tr>");
 
