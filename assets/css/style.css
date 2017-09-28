@@ -81,10 +81,10 @@ input:focus {
   color: black;
 }
 #results {
-  margin: 0 auto 20px auto;
+  margin: auto;
   padding: 0;
-  bg-opacity: 0.4;
-  background-color: white;
+  /*background-color: white;*/
+  background-color: white; opacity: .9;
   border: 2px solid #3872ac;
 
 }
