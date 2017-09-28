@@ -107,37 +107,6 @@ border: 2px solid #3872ac;
 }
 
 
-
-/*==========  Mobile First Method  ==========*/
-
-    /* Custom, iPhone Retina */
-    @media only screen and (min-width : 320px) {
-
-    }
-
-    /* Extra Small Devices, Phones */
-    @media only screen and (min-width : 480px) {
-      .collapse {
-        width: 0px;
-      }
-    }
-
-    /* Small Devices, Tablets */
-    @media only screen and (min-width : 768px) {
-      .collapse {
-        /*width: 100%;*/
-      }
-    }
-
-    /* Medium Devices, Desktops */
-    @media only screen and (min-width : 992px) {
-
-    }
-
-    /* Large Devices, Wide Screens */
-    @media only screen and (min-width : 1200px) {
-
-    }
     /*==========  Non-Mobile First Method  ==========*/
 
     /* Large Devices, Wide Screens */
@@ -157,7 +126,10 @@ border: 2px solid #3872ac;
 
     /* Extra Small Devices, Phones */
     @media only screen and (max-width : 480px) {
+      .coll {
+        display:none;
 
+      }
     }
 
     /* Custom, iPhone Retina */
