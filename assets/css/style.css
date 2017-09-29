@@ -13,6 +13,8 @@ body {
 	background-size: 100% ;*/
 }
 
+
+
 #title {
   margin: auto;
 	 -webkit-text-stroke: 1px black;
@@ -24,6 +26,13 @@ body {
       -1px 1px 0 #000,
        1px 1px 0 #000;
        font-size: 600%;
+}
+
+#why-maltr {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
 }
 
 .navbar-nav {
@@ -98,7 +107,8 @@ input:focus {
 #map-div {
   /*padding: 0 !important;*/
 }
-#map_canvas {
+#map_canvas,
+#map-nearme {
 height: 375px;
 width: 100%;
 margin: auto;
@@ -107,6 +117,40 @@ border: 2px solid #3872ac;
 }
 
 
+
+
+
+
+/*==========  Mobile First Method  ==========*/
+
+    /* Custom, iPhone Retina */
+    @media only screen and (min-width : 320px) {
+
+    }
+
+    /* Extra Small Devices, Phones */
+    @media only screen and (min-width : 480px) {
+      .collapse {
+        width: 0px;
+      }
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+      .collapse {
+        /*width: 100%;*/
+      }
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+    }
     /*==========  Non-Mobile First Method  ==========*/
 
     /* Large Devices, Wide Screens */
