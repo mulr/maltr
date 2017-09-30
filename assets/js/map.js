@@ -61,9 +61,15 @@ function initMap() {
                         });
                         //adds the info windows to each marker       
                         google.maps.event.addListener(marker, 'click', function() {
+                            if (place.opening_hours.open_now == true) {
                             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                                'Place ID: ' + place.place_id + '<br>' +
-                                place.formatted_address + '</div>');
+                                'Rating (out of 5): ' + place.rating + '<br>' + 'Open for Beer!'
+                                 + '</div>');
+                            } else {
+                              infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                                'Rating (out of 5): ' + place.rating + '<br>' + 'Closed for Beer!'
+                                + '</div>');  
+                            }                            
                             infowindow.open(map, this);
                         });
                         //places markers in array for future use --mainly to remove the markers
