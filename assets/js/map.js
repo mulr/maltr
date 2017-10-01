@@ -59,17 +59,19 @@ function initMap() {
                             animation: google.maps.Animation.DROP,
                             position: place.geometry.location
                         });
-                        //adds the info windows to each marker       
+                        //adds the info windows to each marker
                         google.maps.event.addListener(marker, 'click', function() {
                             if (place.opening_hours.open_now == true) {
                             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                                'Rating (out of 5): ' + place.rating + '<br>' + 'Open for Beer!'
-                                 + '</div>');
+                                'Rating (out of 5): ' + place.rating + '<br>' +
+                                'Open for Beer!' + '<br>' + "Serving: " +
+
+                                '</div>');
                             } else {
                               infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                                 'Rating (out of 5): ' + place.rating + '<br>' + 'Closed for Beer!'
-                                + '</div>');  
-                            }                            
+                                + '<br>' + "Serving: " + '</div>');
+                            }
                             infowindow.open(map, this);
                         });
                         //places markers in array for future use --mainly to remove the markers
@@ -83,7 +85,7 @@ function initMap() {
         }
         //at child_added do this
         database.ref().orderByChild("brewer").equalTo(brewerSelected).on("child_added", function(childSnapshot) {
-            //push the name and place ID into the targetMarkers array 
+            //push the name and place ID into the targetMarkers array
             console.log(childSnapshot.val());
 
             targetMarkers.push([childSnapshot.val().targetLocationPlaceID]);

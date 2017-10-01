@@ -1,9 +1,9 @@
-// This is the js that is specifically for collecting the locations where a Brewer's beers can be found.
+
+//Collects the locations where a Brewer's beers can be found.
 
 // FIREBASE INFO FOR HTML
 // <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 
-// Console.log test to make sure the form.html is connecting to the form.js file
 console.log("Form.js is connected")
 
 // Initialize a Firebase dB to hold the maltr data
@@ -19,14 +19,14 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database();
-// Firebase initialization complete
-
 
 // maltr ADMIN FORM GLOBAL VARIABLES
 
 var brewer = "";
 var targetLocationName = "";
-                                    var typeOfInventory = "";
+
+// DM-Added type of inventory
+var typeOfInventory = "";
 var targetLocationAddress1 = "";
 var targetLocationAddress2 = "";
 var targetLocationCity = "";
@@ -39,17 +39,19 @@ var targetLocationZip = "";
 
 var targetLocationPlaceID = 0;
 
-console.log("The initial load");
-console.log(brewer);
-console.log(targetLocationName);
-                                          console.log(typeOfInventory);
-console.log(targetLocationAddress1);
-console.log(targetLocationAddress2);
-console.log(targetLocationCity);
-console.log(targetLocationState);
-console.log(targetLocationZip);
-console.log(targetLocationPlaceID);
-console.log("--------------------------");
+// console.log("The initial load o");
+// console.log(brewer);
+// console.log(targetLocationName);
+//
+// // DM-Added type of inventory
+// console.log(typeOfInventory + "Type of inventory");
+// console.log(targetLocationAddress1);
+// console.log(targetLocationAddress2);
+// console.log(targetLocationCity);
+// console.log(targetLocationState);
+// console.log(targetLocationZip);
+// console.log(targetLocationPlaceID);
+// console.log("--------------------------");
 
 
 
@@ -75,6 +77,8 @@ $("#add-targetLocation").on("click", function(event) {
 
 	brewer = $("#brewer-input").val().trim();
 	targetLocationName = $("#targetLocationName-input").val().trim();
+
+  // DM-Added type of inventory
   typeOfInventory = $("#typeOfInventory").val().trim();
 	targetLocationAddress1 = $("#targetLocationAddress1-input").val().trim();
 	targetLocationAddress2 = $("#targetLocationAddress2-input").val().trim();
@@ -87,7 +91,9 @@ $("#add-targetLocation").on("click", function(event) {
 	console.log("After the button is pushed");
 	console.log(brewer);
 	console.log(targetLocationName);
-                                    console.log(typeOfInventory);
+
+  // DM-Added type of inventory
+  console.log(typeOfInventory);
 	console.log(targetLocationAddress1);
 	console.log(targetLocationAddress2);
 	console.log(targetLocationCity);
