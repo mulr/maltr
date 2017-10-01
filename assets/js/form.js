@@ -4,7 +4,7 @@
 // <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 
 // Console.log test to make sure the form.html is connecting to the form.js file
-console.log("js file is connected!")
+console.log("Form.js is connected")
 
 // Initialize a Firebase dB to hold the maltr data
 var config = {
@@ -26,6 +26,7 @@ var database = firebase.database();
 
 var brewer = "";
 var targetLocationName = "";
+                                    var typeOfInventory = "";
 var targetLocationAddress1 = "";
 var targetLocationAddress2 = "";
 var targetLocationCity = "";
@@ -41,6 +42,7 @@ var targetLocationPlaceID = 0;
 console.log("The initial load");
 console.log(brewer);
 console.log(targetLocationName);
+                                          console.log(typeOfInventory);
 console.log(targetLocationAddress1);
 console.log(targetLocationAddress2);
 console.log(targetLocationCity);
@@ -73,6 +75,7 @@ $("#add-targetLocation").on("click", function(event) {
 
 	brewer = $("#brewer-input").val().trim();
 	targetLocationName = $("#targetLocationName-input").val().trim();
+  typeOfInventory = $("#typeOfInventory").val().trim();
 	targetLocationAddress1 = $("#targetLocationAddress1-input").val().trim();
 	targetLocationAddress2 = $("#targetLocationAddress2-input").val().trim();
 	targetLocationCity = $("#targetLocationCity-input").val().trim();
@@ -84,6 +87,7 @@ $("#add-targetLocation").on("click", function(event) {
 	console.log("After the button is pushed");
 	console.log(brewer);
 	console.log(targetLocationName);
+                                    console.log(typeOfInventory);
 	console.log(targetLocationAddress1);
 	console.log(targetLocationAddress2);
 	console.log(targetLocationCity);
@@ -96,6 +100,7 @@ $("#add-targetLocation").on("click", function(event) {
 	database.ref().push({
 		brewer: brewer,
 		targetLocationName: targetLocationName,
+    typeOfInventory: typeOfInventory,
 		targetLocationAddress1: targetLocationAddress1,
 		targetLocationAddress2: targetLocationAddress2,
 		targetLocationCity: targetLocationCity,
