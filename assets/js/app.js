@@ -81,10 +81,18 @@ $(".dropdown-item").on('click', function() {
 		console.log(childSnapshot.val().targetLocationZip);
 		console.log(childSnapshot.val().targetLocationPlaceID);
 
+    var inventory = childSnapshot.val().typeOfInventory;
+
+    if( inventory === undefined ){
+      inventory = "n/a";
+    } else {
+      inventory;
+    };
+
 		// Add each brewer's data into the table
 		$("#listed-results").append("<tr>" +
     "<td>" + childSnapshot.val().targetLocationName + "</td>" +
-    "<td>" + childSnapshot.val().typeOfInventory + "</td>" +
+    "<td>" + inventory + "</td>" +
     "<td>" + childSnapshot.val().targetLocationAddress1 + "</td>" +
     "<td class='coll'>" + childSnapshot.val().targetLocationCity + "</td>" +
     "<td class='coll'>" + childSnapshot.val().targetLocationState + "</td>" +

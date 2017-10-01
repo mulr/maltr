@@ -53,22 +53,9 @@ var targetLocationPlaceID = 0;
 // console.log(targetLocationPlaceID);
 // console.log("--------------------------");
 
-
-
-
-
 // maltr ADMIN FORM FUNCTIONS
 
-
-
-
-
-
-
-
-
 // maltr ADMIN FORM PROCESSES
-
 
 // Capture new target location data where a specific brewer's beer(s) can be purchased when maltr Admin selects "Submit" button
 
