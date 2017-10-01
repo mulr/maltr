@@ -1,43 +1,73 @@
 //FIREBASE - from Gabe:
-var config = {
-    apiKey: "AIzaSyD9zk9bTMjEZ9sqWATtCz0QI2TQ48InrVE",
-    authDomain: "maltr-2096b.firebaseapp.com",
-    databaseURL: "https://maltr-2096b.firebaseio.com",
-    projectId: "maltr-2096b",
-    storageBucket: "maltr-2096b.appspot.com",
-    messagingSenderId: "12160681601"
-};
+// var config = {
+//     apiKey: "AIzaSyD9zk9bTMjEZ9sqWATtCz0QI2TQ48InrVE",
+//     authDomain: "maltr-2096b.firebaseapp.com",
+//     databaseURL: "https://maltr-2096b.firebaseio.com",
+//     projectId: "maltr-2096b",
+//     storageBucket: "maltr-2096b.appspot.com",
+//     messagingSenderId: "12160681601"
+// };
 
+//-----------------------------------------
+//Added functionality to center map on click:
+  var map;
+  var orlando = {lat: 28.5445, lng: -81.381};
 
+  function CenterControl(controlDiv, map) {
 
+    // Set CSS for the control border.
+    var controlUI = document.createElement('div');
+    controlUI.style.backgroundColor = '#fff';
+    controlUI.style.border = '2px solid #fff';
+    controlUI.style.borderRadius = '3px';
+    controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+    controlUI.style.cursor = 'pointer';
+    controlUI.style.marginBottom = '22px';
+    controlUI.style.textAlign = 'center';
+    controlUI.title = 'Click to recenter the map';
+    controlDiv.appendChild(controlUI);
 
+    // Set CSS for the control interior.
+    var controlText = document.createElement('div');
+    controlText.style.color = 'rgb(25,25,25)';
+    controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+    controlText.style.fontSize = '14px';
+    controlText.style.lineHeight = '32px';
+    controlText.style.paddingLeft = '5px';
+    controlText.style.paddingRight = '5px';
+    controlText.innerHTML = 'Center Map';
+    controlUI.appendChild(controlText);
+
+    // Setup the click event listeners: simply set the map to Chicago.
+    controlUI.addEventListener('click', function() {
+      map.setCenter(orlando);
+    });
+
+  }
+//-----------------------------------
 $("#map_canvas").hide();
 
-//Firebase end, begin other code:
-//---------------------------------------
 var markersArray = [];
 
 //let's build a map
-
 function initMap() {
-
-    //map is centered in Orlando wit latlng of 28.5445 -81.381
-
-
     //FUNCTIONS
-
     //when brewery is selected from drop down, do this
     $(".dropdown-item").on('click', function() {
         // event.preventDefault();
         $("#map_canvas").show();
 
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
-            center: {
-                lat: 28.5445,
-                lng: -81.381
-            },
+            center: orlando,
             zoom: 10
         });
+
+        var centerControlDiv = document.createElement('div');
+        var centerControl = new CenterControl(centerControlDiv, map);
+        centerControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+
+
         var infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
 
@@ -59,17 +89,19 @@ function initMap() {
                             animation: google.maps.Animation.DROP,
                             position: place.geometry.location
                         });
-                        //adds the info windows to each marker       
+                        //adds the info windows to each marker
                         google.maps.event.addListener(marker, 'click', function() {
                             if (place.opening_hours.open_now == true) {
                             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                                'Rating (out of 5): ' + place.rating + '<br>' + 'Open for Beer!'
-                                 + '</div>');
+                                'Rating (out of 5): ' + place.rating + '<br>' +
+                                'Open for Beer!' + '<br>' +
+
+                                '</div>');
                             } else {
                               infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                                 'Rating (out of 5): ' + place.rating + '<br>' + 'Closed for Beer!'
-                                + '</div>');  
-                            }                            
+                                + '<br>' + '</div>');
+                            }
                             infowindow.open(map, this);
                         });
                         //places markers in array for future use --mainly to remove the markers
@@ -83,13 +115,12 @@ function initMap() {
         }
         //at child_added do this
         database.ref().orderByChild("brewer").equalTo(brewerSelected).on("child_added", function(childSnapshot) {
-            //push the name and place ID into the targetMarkers array 
+            //push the name and place ID into the targetMarkers array
             console.log(childSnapshot.val());
 
             targetMarkers.push([childSnapshot.val().targetLocationPlaceID]);
             //increments for every child added
             idAdded++;
-
 
             console.log('the number of ids added is ' + idAdded);
 

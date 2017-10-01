@@ -4,19 +4,19 @@
 
 
 
-  console.log("Testing!");
+  console.log("Main.js is working");
 
 //   $('#dcategory li').click(function(){
 //     var x = $(this).text();
-//     $('input').val(x); //Give proper class 
+//     $('input').val(x); //Give proper class
 // })
 
   $(".dropdown-item").on('click', function() {
     // event.preventDefault();
-    console.log("this function was called");
+    // console.log("this function was called");
     var locName = $(this).text();
 
-    console.log(locName);
+    // console.log(locName);
 
 
 });

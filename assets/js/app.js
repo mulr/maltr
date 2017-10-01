@@ -48,15 +48,11 @@ firebase.initializeApp(config);
 var database = firebase.database();
 // Firebase initialization complete
 
-
 // GLOBAL VARIABLES
-
-
 
 // FUNCTIONS
 
 // Append brewer's product locations to the table below maltr map
-
 
 $("#results").hide();
 // $("#map_canvas").hide();
@@ -64,7 +60,6 @@ $("#results").hide();
 // PROCESSES
 
 //https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
-$
 
 $(".dropdown-item").on('click', function() {
     // event.preventDefault();
@@ -74,8 +69,6 @@ $(".dropdown-item").on('click', function() {
 	$("#listed-results tr").remove();
 
     var brewerSelected = $(this).text();
-
-    console.log("Appending the following brewer: " + brewerSelected);
 
 	database.ref().orderByChild("brewer").equalTo(brewerSelected).on("child_added", function(childSnapshot) {
 
@@ -88,9 +81,18 @@ $(".dropdown-item").on('click', function() {
 		console.log(childSnapshot.val().targetLocationZip);
 		console.log(childSnapshot.val().targetLocationPlaceID);
 
+    var inventory = childSnapshot.val().typeOfInventory;
+
+    if( inventory === undefined ){
+      inventory = "n/a";
+    } else {
+      inventory;
+    };
+
 		// Add each brewer's data into the table
 		$("#listed-results").append("<tr>" +
     "<td>" + childSnapshot.val().targetLocationName + "</td>" +
+    "<td>" + inventory + "</td>" +
     "<td>" + childSnapshot.val().targetLocationAddress1 + "</td>" +
     "<td class='coll'>" + childSnapshot.val().targetLocationCity + "</td>" +
     "<td class='coll'>" + childSnapshot.val().targetLocationState + "</td>" +
