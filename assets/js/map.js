@@ -94,15 +94,16 @@ function initMap() {
                             if (place.opening_hours.open_now == true) {
                             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                                 'Rating (out of 5): ' + place.rating + '<br>' +
-                                'Open for Beer!' + '<br>' +
-
-                                '</div>');
+                                'Open for Beer!' + '<br>' + 'Place id is ' + place.place_id + '<br/>'
+                                +  '</div>');
                             } else {
                               infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                                 'Rating (out of 5): ' + place.rating + '<br>' + 'Closed for Beer!'
-                                + '<br>' + '</div>');
+                                + '<br>' + 'Place id is ' + place.place_id + '<br/>'
+                                +  '</div>');
                             }
                             infowindow.open(map, this);
+                            console.log('this place ID new style is ' + place.place_id);
                         });
                         //places markers in array for future use --mainly to remove the markers
                         markersArray.push(marker);
